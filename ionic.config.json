@@ -1,5 +1,7 @@
 {
   "name": "KanoaStudio",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
