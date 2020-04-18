@@ -8,7 +8,10 @@ export interface Contact {
   nombre: string,
   telefono: string,
   correo: string,
-  mensaje: string
+  mensaje: string,
+  hora: any,
+  dispositivo: string,
+  sincronizado: any
 }
 
 @Injectable({

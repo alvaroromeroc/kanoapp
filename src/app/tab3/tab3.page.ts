@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContactService, Contact } from 'src/app/services/contact.service';
 import { ToastController } from '@ionic/angular';
+import * as firebase from 'firebase';
 
 
 @Component({
@@ -15,7 +16,10 @@ export class Tab3Page implements OnInit {
     nombre: '',
     telefono: '',
     correo: '',
-    mensaje: ''
+    mensaje: '',
+    hora: '',
+    dispositivo:'',
+    sincronizado:''
   };
 
   constructor(private activatedRoute: ActivatedRoute, private contactService: ContactService,
@@ -33,6 +37,10 @@ export class Tab3Page implements OnInit {
     }
 
     addContact() {
+      this.contact.hora = firebase.firestore.FieldValue.serverTimestamp();
+      this.contact.dispositivo= 'Android';
+      this.contact.sincronizado = false;
+
       this.contactService.addContact(this.contact).then(() => {
         this.router.navigateByUrl('/');
         this.showToast('Mensaje enviado');
